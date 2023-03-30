@@ -6,7 +6,7 @@ with open('README.md', 'r') as fh:
 requires = [
     'numpy==1.24.2',
     'terminaltables==3.1.0',
-    'ortools==9.0.9048',
+    'ortools>=9.0.9048',
 ]
 
 setuptools.setup(
@@ -15,7 +15,7 @@ setuptools.setup(
     author='Ben Brostoff',
     author_email='ben.brostoff@gmail.com',
     description='A tool to automate and optimize DraftKings and FanDuel '
-                'lineup construction.',
+    'lineup construction.',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/BenBrostoff/draftfast',
