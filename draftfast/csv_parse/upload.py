@@ -4,8 +4,7 @@ from draftfast.rules import DRAFT_KINGS, FAN_DUEL
 upload_file = '{}/data/current-upload.csv'.format(os.getcwd())
 
 
-def write_to_csv(writer, player_map, roster, game=DRAFT_KINGS,
-                 league='NBA'):
+def write_to_csv(writer, player_map, roster, game=DRAFT_KINGS, league='NBA'):
     players = roster.sorted_players()
 
     ordered_possible = []
@@ -16,7 +15,21 @@ def write_to_csv(writer, player_map, roster, game=DRAFT_KINGS,
             _on_position(players, ['F']),
             _on_position(players, ['F']),
             _on_position(players, ['F']),
-            players
+            players,
+        ]
+    elif game == DRAFT_KINGS and league == 'MLB':
+        ordered_possible = [
+            _on_position(players, ['P']),
+            _on_position(players, ['P']),
+            _on_position(players, ['C']),
+            _on_position(players, ['1B']),
+            _on_position(players, ['2B']),
+            _on_position(players, ['3B']),
+            _on_position(players, ['SS']),
+            _on_position(players, ['OF']),
+            _on_position(players, ['OF']),
+            _on_position(players, ['OF']),
+            players,
         ]
     elif game == DRAFT_KINGS and league == 'NFL':
         ordered_possible = [
@@ -27,7 +40,6 @@ def write_to_csv(writer, player_map, roster, game=DRAFT_KINGS,
             _on_position(players, ['WR']),
             _on_position(players, ['WR']),
             _on_position(players, ['TE']),
-
             # NFL Flex
             _on_position(players, ['TE', 'WR', 'RB']),
             _on_position(players, ['DST']),
@@ -51,7 +63,7 @@ def write_to_csv(writer, player_map, roster, game=DRAFT_KINGS,
             _on_position(players, ['D']),
             _on_position(players, ['D']),
             _on_position(players, ['GK']),
-            players
+            players,
         ]
     elif game == DRAFT_KINGS and league == 'NHL':
         ordered_possible = [
@@ -63,7 +75,7 @@ def write_to_csv(writer, player_map, roster, game=DRAFT_KINGS,
             _on_position(players, ['D']),
             _on_position(players, ['D']),
             _on_position(players, ['G']),
-            players
+            players,
         ]
     elif game == DRAFT_KINGS:
         ordered_possible = [
@@ -74,7 +86,7 @@ def write_to_csv(writer, player_map, roster, game=DRAFT_KINGS,
             _on_position(players, ['C']),
             _on_position(players, ['SG', 'PG']),
             _on_position(players, ['SF', 'PF']),
-            players
+            players,
         ]
     elif game == FAN_DUEL:
         ordered_possible = [
@@ -93,16 +105,10 @@ def write_to_csv(writer, player_map, roster, game=DRAFT_KINGS,
     counter = 0
     for ps in ordered_possible:
         counter += 1
-        not_used_ps = [
-            p for p in ps
-            if p not in ordered_lineup
-        ]
+        not_used_ps = [p for p in ps if p not in ordered_lineup]
         ordered_lineup.append(not_used_ps[0])
 
-    writer.writerow([
-        p.get_player_id(player_map)
-        for p in ordered_lineup
-    ])
+    writer.writerow([p.get_player_id(player_map) for p in ordered_lineup])
 
 
 def _on_position(players, possible):
