@@ -146,7 +146,7 @@ class DraftKingsNFLUploader(DraftKingsUploader):
     HEADERS = ['QB', 'RB', 'RB', 'WR', 'WR', 'WR', 'TE', 'FLEX', 'DST']
 
 
-class DraftKingsNFLUploader(DraftKingsUploader):
+class DraftKingsMLBUploader(DraftKingsUploader):
     LEAGUE = 'MLB'
     HEADERS = ['P', 'P', 'C', '1B', '2B', '3B', 'SS', 'OF', 'OF', 'OF']
 
