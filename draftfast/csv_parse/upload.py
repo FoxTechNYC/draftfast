@@ -106,7 +106,8 @@ def write_to_csv(writer, player_map, roster, game=DRAFT_KINGS, league='NBA'):
     for ps in ordered_possible:
         counter += 1
         not_used_ps = [p for p in ps if p not in ordered_lineup]
-        ordered_lineup.append(not_used_ps[0])
+        if len(not_used_ps) > 0:
+            ordered_lineup.append(not_used_ps[0])
 
     writer.writerow([p.get_player_id(player_map) for p in ordered_lineup])
 
