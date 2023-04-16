@@ -62,7 +62,11 @@ def map_pids(pid_file, encoding, errors, game=DRAFT_KINGS):
 
 class CSVUploader(object):
     def __init__(
-        self, pid_file, upload_file='./upload.csv', encoding='utf-8', errors='replace'
+        self,
+        pid_file,
+        upload_file='./upload.csv',
+        encoding='utf-8',
+        errors='replace',
     ):
         self.upload_file = upload_file
         self.encoding = encoding
@@ -74,7 +78,7 @@ class CSVUploader(object):
 
 
 class DraftKingsUploader(CSVUploader):
-    def write_rosters(self, rosters):
+    def write_rosters(self, upload_file: str = './upload.csv', rosters: list = None):
         with open(self.upload_file, 'w') as f:
             writer = csv.writer(f)
             writer.writerow(self.HEADERS)
