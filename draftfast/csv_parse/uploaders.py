@@ -79,7 +79,7 @@ class CSVUploader(object):
 
 class DraftKingsUploader(CSVUploader):
     def write_rosters(self, upload_file: str = './upload.csv', rosters: list = None):
-        with open(self.upload_file, 'w') as f:
+        with open(upload_file, 'w') as f:
             writer = csv.writer(f)
             writer.writerow(self.HEADERS)
             for roster in rosters:
